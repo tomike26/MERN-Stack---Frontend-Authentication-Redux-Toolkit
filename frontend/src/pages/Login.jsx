@@ -35,7 +35,7 @@ const Login = () => {
           <FaSignInAlt />
           Log in 
         </h1>
-        <p>Please Log in and start setting goals</p>
+        <p>Log in and start setting goals</p>
       </section>
 
       <section className="form">
