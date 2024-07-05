@@ -28,7 +28,6 @@
     "color-name": "^1.1.4",
     "colors": "^1.4.0",
     "concat-map": "^0.0.1",
-    "concurrently": "^7.0.0",
     "content-disposition": "^0.5.4",
     "content-type": "^1.0.4",
     "cookie": "^0.4.1",
@@ -145,11 +144,13 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Tomi",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "nodemon": "^3.1.4"
   }
 }
