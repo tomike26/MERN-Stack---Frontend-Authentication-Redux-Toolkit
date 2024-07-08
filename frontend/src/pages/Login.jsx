@@ -57,7 +57,8 @@ function Login() {
 
   return (
     <>
-      <section className='heading'>
+    <div className='container'>
+    <section className='heading'>
         <h1>
           <FaSignInAlt /> Login
         </h1>
@@ -96,6 +97,8 @@ function Login() {
           </div>
         </form>
       </section>
+    </div>
+
     </>
   )
 }

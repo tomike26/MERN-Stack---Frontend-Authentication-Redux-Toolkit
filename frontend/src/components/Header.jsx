@@ -15,7 +15,7 @@ function Header() {
   }
 
   return (
-    <header className='header'>
+    <header className='header' style={{margin:"0px 40px"}}>
       <div className='logo'>
         <Link to='/'>GoalSetter</Link>
       </div>
