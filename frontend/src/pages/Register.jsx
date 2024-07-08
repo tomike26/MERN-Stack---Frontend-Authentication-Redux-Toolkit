@@ -1,26 +1,27 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { FaUser } from 'react-icons/fa'
-import { register, reset } from '../features/auth/authSlice'
-import Spinner from '../components/Spinner'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FaUser } from 'react-icons/fa'
+import { register, reset } from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
 
 function Register() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password2: "",
-  });
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  })
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2 } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const {user,isLoading, isError, message , isSuccess} = useSelector((state) => state.auth)
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
 
   useEffect(() => {
     if (isError) {
@@ -34,19 +35,16 @@ function Register() {
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
-
   const onChange = (e) => {
-   setFormData((prevState)=>({
-    ...prevState,
-    [e.target.name]:e.target.value
-   }))
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault()
 
-  const onSubmit = (e) =>{
-    e.preventDefault() 
-    
-    
     if (password !== password2) {
       toast.error('Passwords do not match')
     } else {
@@ -58,68 +56,65 @@ function Register() {
 
       dispatch(register(userData))
     }
-
-
   }
 
   if (isLoading) {
     return <Spinner />
-  } 
+  }
 
   return (
     <>
-    <div className="container">
-    <section className="heading">
+    <div className='container'>
+    <section className='heading'>
         <h1>
-          <FaUser />
-          Register
+          <FaUser /> Register
         </h1>
         <p>Please create an account</p>
       </section>
 
-      <section className="form">
+      <section className='form'>
         <form onSubmit={onSubmit}>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              className="form-control"
-              name="name"
-              id="name"
+              type='text'
+              className='form-control'
+              id='name'
+              name='name'
               value={name}
-              placeholder="Enter your name"
+              placeholder='Enter your name'
               onChange={onChange}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              className="form-control"
-              name="email"
-              id="email"
+              type='email'
+              className='form-control'
+              id='email'
+              name='email'
               value={email}
-              placeholder="Enter your email"
+              placeholder='Enter your email'
               onChange={onChange}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              className="form-control"
-              name="password"
-              id="password"
+              type='password'
+              className='form-control'
+              id='password'
+              name='password'
               value={password}
-              placeholder="Enter your password"
+              placeholder='Enter password'
               onChange={onChange}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="text"
-              className="form-control"
-              name="password2"
-              id="password2"
+              type='password'
+              className='form-control'
+              id='password2'
+              name='password2'
               value={password2}
-              placeholder="Confirm your password2"
+              placeholder='Confirm password'
               onChange={onChange}
             />
           </div>
@@ -131,8 +126,9 @@ function Register() {
         </form>
       </section>
     </div>
+
     </>
-  );
+  )
 }
 
-export default Register;
+export default Register
